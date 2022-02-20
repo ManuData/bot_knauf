@@ -1,7 +1,25 @@
 from selenium import webdriver
+import time
 
 
-drive = webdriver.Chrome(executable_path='./web_driver_chrome/chromedriver')
+driver = webdriver.Firefox()
 
-drive.get('https://www.knauf.de')
+driver.get('https://www.knauf.de')
+
+#print(drive.get_cookies())
+time.sleep(3)
+test = driver.execute_script('return dataLayer')
+print(test)
+
+
+#test = drive.find_element(By.ID, "accept-recommended-btn-handler")
+#test = drive.find_element(By.CLASS_NAME, "button-theme")
+#test.click()
+
+
+
+
+
+
+
 
