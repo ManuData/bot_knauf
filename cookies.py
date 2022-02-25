@@ -15,11 +15,3 @@ print(test)
 #test = drive.find_element(By.ID, "accept-recommended-btn-handler")
 #test = drive.find_element(By.CLASS_NAME, "button-theme")
 #test.click()
-
-
-
-
-
-
-
-

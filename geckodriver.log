@@ -58,3 +58,10 @@ DevTools listening on ws://localhost:51296/devtools/browser/e46cad76-d0a8-ca4e-9
 1645392698485	Marionette	INFO	Listening on port 51301
 1645392698519	Marionette	WARN	TLS certificate errors will be ignored for this session
 JavaScript warning: https://www.knauf.de/media/de/knauf_design/javascript/default_scripts.js?_ver=1645168000926, line 3481: unreachable code after return statement
+!!! error running onStopped callback: TypeError: callback is not a function
+1645479208125	Marionette	INFO	Stopped listening on port 51301
+1645479208248	RemoteAgent	ERROR	unable to stop listener: [Exception... "Component returned failure code: 0x8000ffff (NS_ERROR_UNEXPECTED) [nsIWindowMediator.getEnumerator]"  nsresult: "0x8000ffff (NS_ERROR_UNEXPECTED)"  location: "JS frame :: chrome://remote/content/cdp/observers/TargetObserver.jsm :: stop :: line 64"  data: no] Stack trace: stop()@TargetObserver.jsm:64
+unwatchForTabs()@TargetList.jsm:70
+unwatchForTargets()@TargetList.jsm:37
+destructor()@TargetList.jsm:109
+close()@RemoteAgent.jsm:136
