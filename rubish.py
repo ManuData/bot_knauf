@@ -72,3 +72,20 @@ for s in scripts:
 #with open('datos.csv','w', encoding='UTF8',) as f:
     #writer = csv.writer(f,dialect='excel')
     #writer.writerow(comments)
+
+
+
+# NOTES: 
+#print(soup.find(string=re.compile("GTM-")))
+#print(soup.find_all(src=re.compile("GTM-")).sourceline) # obtengo el script de GTM del iframe
+#print(soup.find_all(src=re.compile("cookielaw")))
+
+# ENCONTRAR EL SCRIPT DE GTM: 
+#test = soup.find_all(string=lambda text:bool(re.search("GTM-",text)))
+#elementos = test[0].split(",")
+#for data in elementos: 
+    #print(data)
+
+# Encontrar GTM:
+gtm_finder = [s for s in scripts if s.attrs == {}]
+gtm = gtm_finder[1].string # Pasar el tag a string

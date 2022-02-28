@@ -73,7 +73,7 @@ def test_2(url,atributo):
     param_1 = None
     param_2 = None
 
-    if(atributo == 'src'):
+    if(atributo == 'src'): # 1.1  Find 1st paramether of OneTrust
         for i in range(len(datos_scripts)):
             try:
                 searched_param_1 = datos_scripts[i][atributo]
@@ -89,7 +89,7 @@ def test_2(url,atributo):
         return param_1
 
 
-    if(atributo =='data-domain-script'):
+    if(atributo =='data-domain-script'): # 1.2 Find 2st paramether of OneTrust
         for i in range(len(datos_scripts)):
             try:
                 searched_param_2 = datos_scripts[i][atributo]
@@ -102,6 +102,8 @@ def test_2(url,atributo):
                 return param_2
         return param_2
 
+
+# APPLY FUNCTIONS TO THE DOMAIN LIST
 
 datos_dominios = ["https://www.knauf.nl","https://www.knauf.de","https://www.knaufceilingsolutions.com/en/"]
 
