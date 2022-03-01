@@ -47,7 +47,6 @@ gtm_finder = [s for s in scripts if s.attrs == {}] # Econtrar el script de GTM p
 
 for gtm in gtm_finder: 
     gtm_found = bool(re.search("GTM",gtm.string))
-    print(gtm_found)
     if (gtm_found):
         print(gtm.sourceline) # NOTA: Punto donde encuentro el script de gtm
 
