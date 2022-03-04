@@ -13,7 +13,7 @@ from bs4 import Comment
 
 # 1. Function to check if OneTrust > GTM based on comments: 
 
-def get_comments():
+def get_comments(url,):
 
     check = []
     datos = {0: "OneTrust Cookies Consent Notice start",
@@ -23,26 +23,29 @@ def get_comments():
          4: "Google Tag Manager (noscript)",
          5: "End Google Tag Manager (noscript)"
          }
-    URL = "https://www.knaufceilingsolutions.com/en"
-    page = requests.get(URL)
+    
+    page = requests.get(url,verify=False)
     soup = BeautifulSoup(page.text,'html.parser')
     comments = soup.find_all(string=lambda text: isinstance(text, Comment) and bool(re.search("(OneTrust|Tag Manager)",text))) # Comentarios en el html
     comments_list = [str(c).strip() for c in comments]
     for idx, c in enumerate(comments_list):
         for key,value in datos.items():
             if c == value:
-                print(f"Posicion del comentario {idx} | Posicion que le corresponderia {key}")
+                #print(f"Posicion del comentario {idx} | Posicion que le corresponderia {key}")
                 if idx == key:
-                    print("estan bien ordenados")
+                    #print("estan bien ordenados")
                     check.append(1)
                 else:
-                    print("No estan bien ordenados")
+                    #print("No estan bien ordenados")
                     check.append(0)
             else:
-                print(f"comentario : {c} | datos : {value}" )
-    return print(check)
+                #print(f"comentario : {c} | datos : {value}" )
+                pass 
+    return check
  
-get_comments()
+print(get_comments("https://www.knauf.de"))
+
+
 
 
 
