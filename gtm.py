@@ -7,7 +7,7 @@ from bs4 import Comment
 
 # Objetivo generar una lista que tenga true o false dependiendo si tiene GTM por cada dominio
 
-def check_gtm_head_tag(url):
+def check_gtm_head_tag(url): # Check if gtm is implemented in the head
     gtm_head_tag_implemented = False
     domain = url
     page = requests.get(url,verify=False )
@@ -20,7 +20,7 @@ def check_gtm_head_tag(url):
 
 
 
-def check_gtm_body_tag(url):
+def check_gtm_body_tag(url): # Check if gtm is implemented in the body
     gtm_body_tag_implemented = False
     domain = url
     page = requests.get(url,verify=False )
@@ -34,7 +34,7 @@ def check_gtm_body_tag(url):
 
 
 
-def head_position(url):
+def head_position(url): # Return line where head label is placed
     domain = url
     page = requests.get(url,verify=False )
     soup = BeautifulSoup(page.text,'html.parser')
@@ -46,7 +46,7 @@ def head_position(url):
 
 
 
-def body_position(url):
+def body_position(url):# Return the position of label body
     domain = url
     page = requests.get(url,verify=False )
     soup = BeautifulSoup(page.text,'html.parser')
@@ -57,7 +57,7 @@ def body_position(url):
 
 
 
-def ot_script_position(url):
+def ot_script_position(url): # Return position of the script of OneTrust
    
     domain = url
     page = requests.get(url,verify=False )
@@ -73,7 +73,7 @@ def ot_script_position(url):
                 return script.sourceline
     return False
 
-def gtm_script_position(url):
+def gtm_script_position(url): # Return line where the script is placed
    
     domain = url
     page = requests.get(url,verify=False )
@@ -88,7 +88,7 @@ def gtm_script_position(url):
         
 
     
-def gtm_iframe(url):
+def gtm_iframe(url): # Return line where iframe is placed
     page = requests.get(url,verify=False )
     soup = BeautifulSoup(page.text,'html.parser')
     scripts = soup.find_all('noscript')

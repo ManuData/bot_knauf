@@ -13,7 +13,7 @@ from bs4 import Comment
 
 # 1. Function to check if OneTrust > GTM based on comments: 
 
-def get_comments(url,):
+def get_comments(url):
 
     check = []
     datos = {0: "OneTrust Cookies Consent Notice start",
@@ -43,7 +43,7 @@ def get_comments(url,):
                 pass 
     return check
  
-print(get_comments("https://www.knauf.de"))
+#print(get_comments("https://www.knauf-performance-materials.com/en"))
 
 
 
