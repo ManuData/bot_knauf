@@ -74,10 +74,10 @@ def check_one_trust_params(url):
 # CALL THE FUNCTIONS: 
 
 
-test = ["https://www.knauf.nl","https://www.knauf.de","https://www.knaufceilingsolutions.com/en/"]
+#test = ["https://www.knauf.nl","https://www.knauf.de","https://www.knaufceilingsolutions.com/en/"]
 
-for domain in test: 
-    first_check = check_one_trust(domain)
-    second_check = check_one_trust_params(domain)
-    print(f"First check:{first_check} | Second check:{second_check}")
+#for domain in test: 
+    #first_check = check_one_trust(domain)
+    #second_check = check_one_trust_params(domain)
+    #print(f"First check:{first_check} | Second check:{second_check}")
 
