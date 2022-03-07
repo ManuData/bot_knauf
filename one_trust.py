@@ -52,7 +52,7 @@ def one_trust_validation(url,atributo):
             except:
                 pass
 
-            else:
+            else: # This code executes if the try block has no errors.
                 if(auto_blocking_feature):
                     param_1 = searched_param_1.split("/")[-2]
                     return param_1

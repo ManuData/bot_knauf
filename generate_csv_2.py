@@ -8,9 +8,10 @@ import csv
 from bs4 import BeautifulSoup
 import urllib3
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
+from data import data
 
 
-data = ["https://www.knauf.nl","https://www.knauf.de","https://www.knaufceilingsolutions.com/en/","https://www.knauf-performance-materials.com/en"] # lista de dominios
+#data = ["https://www.knauf.nl","https://www.knauf.de","https://www.knaufceilingsolutions.com/en/","https://www.knauf-performance-materials.com/en"] # lista de dominios
 
 
 # Check if OneTrust implemented:
@@ -42,8 +43,8 @@ def check_gtm_head_tag(url,page,soup):
         return gtm_head_tag_implemented
     return gtm_head_tag_implemented
 
-# Check if gtm is implemented in the body:
 
+# Check if gtm is implemented in the body:
 def check_gtm_body_tag(url,page,soup): # Check if gtm is implemented in the body
     gtm_body_tag_implemented = False
     gtm_iframe_tag = soup.find_all(src=re.compile("GTM-")) # Iframe Tag GTM
@@ -138,6 +139,7 @@ def gtm_iframe(url,page,soup): # Return line where iframe is placed
 
 
 def scrapping(domain_list):
+
     data_one_trust = [] # Identify if oneTrust is implemented
     data_gtm_header = [] # Identify for each domain if GTM is in the head
     data_gtm_body = [] # Identify for each domain if GTM is in the body
@@ -146,9 +148,7 @@ def scrapping(domain_list):
     data_comments = [] # Check if comments from OneTrust and GTM are present and in order expected
     data_ot_script_position = [] # Return position of script of OneTrust
     data_gtm_script_position = [] # Return position of script of GTM (first script)
-    data_gtm_iframe_position = []
-
-
+    data_gtm_iframe_position = [] # Return the position of the iframe script GTM (body)
 
 
     for domain in domain_list:
@@ -184,8 +184,6 @@ def generate_csv():
         for i in range(len(data)): # Tengo que incluir el largo de las listas (el número de dominios que tengo que analizar)
             writer.writerow([data[i],data_one_trust[i],data_gtm_header[i],data_gtm_body[i],data_head_position[i],data_body_position[i],data_comments[i],data_ot_script_position[i],data_gtm_script_position[i],data_gtm_iframe_position[i]]) # Datos a escribir
         csvfile.close()
-
-
     return False
 
 generate_csv()

@@ -97,8 +97,7 @@ def gtm_iframe(url): # Return line where iframe is placed
             return script.sourceline
     return False
            
-        
-  
+
 
 
 # Test funciones: 
