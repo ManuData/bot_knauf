@@ -5,41 +5,43 @@ from urllib3.util import Retry
 import urllib3
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 from data_domains import data
+import csv
 
 # Test how many domains accepts requests
 
-domains_ok = []
-domains_ko = []
-error_type = {}
-for i in range(150):
-    url = data[i]
-    print(url)
-    session = requests.Session()
-    retry = Retry(connect=1, backoff_factor=0.5)
-    #retry = Retry(connect=3, backoff_factor=0.5)
-    adapter = HTTPAdapter(max_retries=retry)
-    session.mount('http://', adapter)
-    session.mount('https://', adapter)
-    try: 
-        s = session.get(url,verify=False)
-    except requests.exceptions.Timeout:
-        print("muchos retries ??")
-        domains_ko.append(url)
-        error_type[url] = "timeout"
-    except requests.exceptions.TooManyRedirects:
-        print("redirects??")
-        error_type[url] = "redirects"
-    except requests.exceptions.RequestException as e:
-        print("catastrofe")
-        error_type[url] = "catastrofe"
-        pass
-    # catastrophic error. bail.
-        #raise SystemExit(e)
-    else:
-        domains_ok.append(url)
-       
+
+
+def check_live(data):
+    domains_ok = []
+    domains_ko = []
+    error_type = {}
+    for i in range(50):
+        url = data[i]
+        print(url)
+        try:
+            #timeout=(10, 10)
+            r = requests.get(url,timeout=(10, 5))
+            print(f"intentando {url}")
+        except:
+            domains_ko.append(url)
+            pass
+        else:
+            if r.status_code == 200:
+                print(f"El dominio {url} es OK")
+                domains_ok.append(url)
+    return domains_ok
+
     
-print(f"Dominios en los que se puede hacer request {domains_ok} vs dominios que NO se puede {domains_ko}")
-print(f"errores ---> {error_type}")
+check_live(data)
+
+def domains_csv():
+    domains_ok = check_live(data)
+    with open('dominios_ok.csv', 'w', newline='') as csvfile:
+        writer = csv.writer(csvfile, delimiter=',', quotechar='|', quoting=csv.QUOTE_MINIMAL)
+        writer.writerow(["DOMINIOS_OK"]) # Columnas
+        for i in range(len(domains_ok)): # Tengo que incluir el largo de las listas (el número de dominios que tengo que analizar)
+            writer.writerow([domains_ok[i]]) # Datos a escribir
+        csvfile.close()
 
 
+domains_csv()

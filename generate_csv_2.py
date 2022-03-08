@@ -8,7 +8,7 @@ import csv
 from bs4 import BeautifulSoup
 import urllib3
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
-from data import data
+from data_domains import data
 
 
 #data = ["https://www.knauf.nl","https://www.knauf.de","https://www.knaufceilingsolutions.com/en/","https://www.knauf-performance-materials.com/en"] # lista de dominios
